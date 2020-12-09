@@ -1,5 +1,5 @@
-How to refactor
-================
+How to evolve code TDD style
+=============================
 1/ try to fake it
 2/ try obvious implementation
 3/ Triangulation
