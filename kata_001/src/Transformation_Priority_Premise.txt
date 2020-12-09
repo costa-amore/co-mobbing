@@ -1,0 +1,50 @@
+How to refactor
+================
+1/ try to fake it
+2/ try obvious implementation
+3/ Triangulation
+
+But what does 'obvious implementation' mean ?
+
+try categorizing your 'steps' in following transformations.
+-> while prefering the ones at the top to those at the bottom :
+
+- simple returns
+- no conditions
+- no looping
+- no mutations
+- no restrictions
+
+more info : https://blog.cleancoder.com/uncle-bob/2013/05/27/TheTransformationPriorityPremise.html
+
+summary:
+~~~~~~~~
+simple returns
+--------------
+ 1/ {} -> null               | return null;
+ 2/ null -> constant         | return "1";
+ 3/ constant -> constant+    | return "1" + "2";  //combine constants
+ 4/ constant -> scalar :
+     constant -> input       | return input;
+     constant -> variable    | return input.getSomething();
+
+no conditions
+-------------
+ 5/ statement -> statements  | return min(max(0, input), 10); //use any statement (without branching !)
+
+no looping
+----------
+ 6/ unconditional -> conditional | return (condition) ? x : y;
+ 7/ scalar -> array              | return {"Dog", "Cat"}[index];
+ 8/ array -> container           | return new Animals{"Dog", "Cat"}.getFirst();
+
+no mutation
+-----------
+ 9/ statement -> tail recursion     | return (a==0) ? total : repeat(a-1, total+a);
+10/ conditional -> loop             | foreach (..){..}
+11/ statement -> recursion          | return (endCondition) ? x : return repeat(x);
+12/ expression -> function          | return CalculateBirthday(input); //extract behavior
+
+no restrictions
+---------------
+13/ variable -> mutation
