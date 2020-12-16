@@ -23,6 +23,7 @@ public class TwelveDaysOfChristmass {
                 ;
 
         if (day > 1) lyrics += "\n" + giveMeYourLyrics(day, 4);
+        if (day > 2) lyrics += "\n" + giveMeYourLyrics(day, 5);
 
         return lyrics;
     }
