@@ -3,9 +3,10 @@ public class TwelveDaysOfChristmass {
     public static final String FINAL_SENTENCE_ALL_DAYS = "A partridge in a pear tree.";
 
     public static String giveMeYourLyrics(int day, int sentence) {
-        if (sentence == 1) return "On the " + numberOfDay(day) + " day of Christmas";
+        if (sentence == 1) return "On the " + numberOfDay(day) + " day of Christmas" + (day > 5 ? "," : "");
         if (sentence == 2) return "My true love gave to me:";
-
+        if (day == 12 && sentence == 13) return "Two turtle doves";
+        if (day == 12 && sentence == 14) return FINAL_SENTENCE_ALL_DAYS.replace("A ", "And a ");
         int delta = sentence-day;
 
         if (delta == 1) return "Two turtle doves and";
@@ -57,7 +58,19 @@ public class TwelveDaysOfChristmass {
                 "\n" +
                 giveMeYourLyrics(5) + "\n" +
                 "\n" +
-                giveMeYourLyrics(6)
+                giveMeYourLyrics(6) + "\n" +
+                "\n" +
+                giveMeYourLyrics(7) + "\n" +
+                "\n" +
+                giveMeYourLyrics(8) + "\n" +
+                "\n" +
+                giveMeYourLyrics(9) + "\n" +
+                "\n" +
+                giveMeYourLyrics(10) + "\n" +
+                "\n" +
+                giveMeYourLyrics(11) + "\n" +
+                "\n" +
+                giveMeYourLyrics(12)
         ;
     }
 

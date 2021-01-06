@@ -81,7 +81,7 @@ public class TwelveDaysOfChristmassBehavior {
     public class Day6 {
         @Test
         void sentence_1_is_generated() {
-            assertEquals("On the sixth day of Christmas", TwelveDaysOfChristmass.giveMeYourLyrics(6, 1));
+            assertEquals("On the sixth day of Christmas,", TwelveDaysOfChristmass.giveMeYourLyrics(6, 1));
         }
         @Test
         void new_sentence_3_is_inserted() {
@@ -92,7 +92,7 @@ public class TwelveDaysOfChristmassBehavior {
     public class Day7 {
         @Test
         void sentence_1_is_generated() {
-            assertEquals("On the seventh day of Christmas", TwelveDaysOfChristmass.giveMeYourLyrics(7, 1));
+            assertEquals("On the seventh day of Christmas,", TwelveDaysOfChristmass.giveMeYourLyrics(7, 1));
         }
         @Test
         void new_sentence_3_is_inserted() {
@@ -103,7 +103,7 @@ public class TwelveDaysOfChristmassBehavior {
     public class Day8 {
         @Test
         void sentence_1_is_generated() {
-            assertEquals("On the eight day of Christmas", TwelveDaysOfChristmass.giveMeYourLyrics(8, 1));
+            assertEquals("On the eight day of Christmas,", TwelveDaysOfChristmass.giveMeYourLyrics(8, 1));
         }
         @Test
         void new_sentence_3_is_inserted() {
@@ -114,7 +114,7 @@ public class TwelveDaysOfChristmassBehavior {
     public class Day9 {
         @Test
         void sentence_1_is_generated() {
-            assertEquals("On the ninth day of Christmas", TwelveDaysOfChristmass.giveMeYourLyrics(9, 1));
+            assertEquals("On the ninth day of Christmas,", TwelveDaysOfChristmass.giveMeYourLyrics(9, 1));
         }
         @Test
         void new_sentence_3_is_inserted() {
@@ -125,7 +125,7 @@ public class TwelveDaysOfChristmassBehavior {
     public class Day10 {
         @Test
         void sentence_1_is_generated() {
-            assertEquals("On the tenth day of Christmas", TwelveDaysOfChristmass.giveMeYourLyrics(10, 1));
+            assertEquals("On the tenth day of Christmas,", TwelveDaysOfChristmass.giveMeYourLyrics(10, 1));
         }
         @Test
         void new_sentence_3_is_inserted() {
@@ -136,7 +136,7 @@ public class TwelveDaysOfChristmassBehavior {
     public class Day11 {
         @Test
         void sentence_1_is_generated() {
-            assertEquals("On the eleventh day of Christmas", TwelveDaysOfChristmass.giveMeYourLyrics(11, 1));
+            assertEquals("On the eleventh day of Christmas,", TwelveDaysOfChristmass.giveMeYourLyrics(11, 1));
         }
         @Test
         void new_sentence_3_is_inserted() {
@@ -147,7 +147,7 @@ public class TwelveDaysOfChristmassBehavior {
     public class Day12 {
         @Test
         void sentence_1_is_generated() {
-            assertEquals("On the Twelfth day of Christmas", TwelveDaysOfChristmass.giveMeYourLyrics(12, 1));
+            assertEquals("On the Twelfth day of Christmas,", TwelveDaysOfChristmass.giveMeYourLyrics(12, 1));
         }
         @Test
         void new_sentence_3_is_inserted() {
@@ -155,7 +155,7 @@ public class TwelveDaysOfChristmassBehavior {
         }
     }
 
-    @Ignore // move challenge.txt to lycircs & compare line by line
+    @Test
     void all_days_are_generated() throws IOException {
         String challengeInput = new String("");
         String sentenceRead;
@@ -164,7 +164,9 @@ public class TwelveDaysOfChristmassBehavior {
         while ((sentenceRead = bufferReader.readLine()) != null) {
             challengeInput = challengeInput.concat(sentenceRead + "\n");
         }
-        assertTrue(challengeInput.contains(TwelveDaysOfChristmass.giveMeYourLyrics()));
+        assertEquals("",
+                new Lyrics (TwelveDaysOfChristmass.giveMeYourLyrics())
+       .compare(new Lyrics(challengeInput).without_sentences(1,2,3,4,5,119,120,121)).toString());
     }
 
     @Test
@@ -175,8 +177,8 @@ public class TwelveDaysOfChristmassBehavior {
     }
 
     @Test
-    void only_difference_with_previous_day_is_the_first_sentence_and_a_new_3rd_line_inserted (){
-        for (int day = 1; day<= DAYS_SUPPORTED-1; day++) {
+    void only_difference_with_previous_day_is_the_first_sentence_and_a_new_3rd_line_inserted_except_last_day (){
+        for (int day = 1; day<= DAYS_SUPPORTED-2; day++) {
             final int nextDay = day + 1;
             assertEquals(
                     new Lyrics(TwelveDaysOfChristmass.giveMeYourLyrics(day)).without_sentences(1).toString(),
@@ -184,5 +186,6 @@ public class TwelveDaysOfChristmassBehavior {
             );
         }
     }
+
 
 }
